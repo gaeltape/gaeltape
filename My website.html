@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaël W.K. Tape — Development Economist</title>
+<meta name="description" content="Gaël W.K. Tape, Development Economist specializing in Public Finance. Research Assistant at FERDI.">
+
+<!-- Polices : EB Garamond (serif élégant pour les titres) + Source Sans 3 (corps de texte lisible) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================================
+   VARIABLES — pour changer facilement les couleurs partout
+   =================================================================== */
+:root {
+  --bg:        #fbfaf7;   /* fond crème très clair */
+  --bg-alt:    #f3f1ea;   /* fond alterné des sections */
+  --ink:       #1c2433;   /* texte principal (bleu nuit) */
+  --ink-soft:  #4a5468;   /* texte secondaire */
+  --accent:    #7a2b2b;   /* bordeaux universitaire */
+  --accent-2:  #1e3a5f;   /* bleu marine */
+  --line:      #d9d4c7;   /* lignes / séparateurs */
+  --maxw:      820px;     /* largeur max du contenu */
+}
+
+/* ===================================================================
+   BASE
+   =================================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
+a:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
+
+h1, h2, h3 { font-family: 'EB Garamond', serif; font-weight: 600; line-height: 1.2; color: var(--ink); }
+
+/* ===================================================================
+   EN-TÊTE + NAVIGATION (barre fixe en haut)
+   =================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 250, 247, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: .3px;
+}
+.brand:hover { text-decoration: none; color: var(--accent); }
+
+nav ul { list-style: none; display: flex; gap: 26px; flex-wrap: wrap; }
+
+nav a {
+  color: var(--ink-soft);
+  font-size: .95rem;
+  font-weight: 500;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+nav a:hover { color: var(--accent); text-decoration: none; border-bottom-color: var(--accent); }
+nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ===================================================================
+   MISE EN PAGE GÉNÉRALE DES SECTIONS
+   =================================================================== */
+main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+section:last-of-type { border-bottom: none; }
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 28px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 54px; height: 3px;
+  background: var(--accent);
+}
+
+/* ===================================================================
+   SECTION HOME / HÉRO
+   =================================================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 36px;
+  align-items: start;
+  padding-top: 70px;
+}
+
+.avatar {
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg);
+  box-shadow: 0 6px 24px rgba(28,36,51,.18);
+  background: var(--bg-alt);
+  /* placeholder visuel si pas de photo */
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'EB Garamond', serif; font-size: 3rem; color: var(--accent-2);
+}
+
+.hero h1 { font-size: 2.6rem; margin-bottom: 6px; }
+.hero .role {
+  font-size: 1.15rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 18px;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}
+.hero p { color: var(--ink-soft); margin-bottom: 14px; }
+
+.links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+.links a {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font-size: .9rem;
+  font-weight: 500;
+  transition: all .2s ease;
+}
+.links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+
+.interests { margin-top: 26px; }
+.interests h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.tags { display: flex; flex-wrap: wrap; gap: 9px; }
+.tag {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+
+/* ===================================================================
+   CV
+   =================================================================== */
+.timeline { border-left: 2px solid var(--line); padding-left: 26px; margin-top: 10px; }
+.cv-item { position: relative; padding-bottom: 28px; }
+.cv-item::before {
+  content: "";
+  position: absolute;
+  left: -33px; top: 6px;
+  width: 11px; height: 11px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+}
+.cv-item .date { font-size: .85rem; color: var(--accent); font-weight: 600; letter-spacing: .5px; }
+.cv-item h3 { font-size: 1.25rem; margin: 2px 0; }
+.cv-item .place { color: var(--ink-soft); font-style: italic; font-family: 'EB Garamond', serif; }
+
+.cv-download {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 20px;
+  background: var(--accent-2);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.cv-download:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+/* ===================================================================
+   RESEARCH (avec sous-sections)
+   =================================================================== */
+.subsection { margin-bottom: 40px; }
+.subsection h3 {
+  font-size: 1.4rem;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px dotted var(--line);
+}
+
+.paper { margin-bottom: 22px; padding-left: 18px; border-left: 3px solid var(--bg-alt); transition: border-color .2s ease; }
+.paper:hover { border-left-color: var(--accent); }
+.paper .ptitle { font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+.paper .pmeta { color: var(--ink-soft); font-size: .92rem; font-style: italic; font-family: 'EB Garamond', serif; }
+.paper .pabs { color: var(--ink-soft); font-size: .95rem; margin-top: 4px; }
+
+.status {
+  display: inline-block;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 2px 9px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+.status.wip { background: #fff3e0; color: #b35900; }
+.status.pub { background: #e6f0e9; color: #2b6b45; }
+
+/* ===================================================================
+   BOUTON RETOUR EN HAUT
+   =================================================================== */
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 99;
+  width: 46px; height: 46px;
+  background: var(--accent-2);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 14px rgba(28,36,51,.3);
+  transition: background .2s ease, transform .2s ease;
+}
+#topBtn:hover { background: var(--accent); transform: translateY(-3px); }
+
+/* ===================================================================
+   PIED DE PAGE
+   =================================================================== */
+footer {
+  background: var(--ink);
+  color: #c9d0dc;
+  text-align: center;
+  padding: 30px 24px;
+  font-size: .9rem;
+}
+footer a { color: #fff; }
+
+/* ===================================================================
+   ANIMATION D'APPARITION AU DÉFILEMENT
+   =================================================================== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===================================================================
+   RESPONSIVE (téléphone / tablette)
+   =================================================================== */
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .hero h1 { font-size: 2.1rem; }
+  .links { justify-content: center; }
+  .interests, .tags { justify-content: center; }
+  .nav-inner { justify-content: center; }
+  nav ul { gap: 16px; justify-content: center; }
+  .section-title::after { left: 50%; transform: translateX(-50%); }
+  .section-title { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header>
+  <div class="nav-inner">
+    <a href="#home" class="brand">Gaël W.K. Tape</a>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#other">Other Activities</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HOME ============ -->
+  <section id="home" class="hero">
+    <!-- Pour ajouter votre photo : remplacez le <div> ci-dessous par
+         <img class="avatar" src="photo.jpg" alt="Gaël W.K. Tape"> -->
+    <div class="avatar">GT</div>
+
+    <div>
+      <h1>Gaël W.K. Tape</h1>
+      <div class="role">Development Economist · Public Finance</div>
+      <p>
+        I am a Development Economist specializing in Public Finance from the
+        <a href="https://cerdi.uca.fr/" target="_blank" rel="noopener">University of Clermont Auvergne – School of Economics (CERDI)</a>
+        in France.
+      </p>
+      <p>
+        I am currently working as a Research Assistant at the
+        <a href="https://ferdi.fr/la-ferdi" target="_blank" rel="noopener">Foundation for Studies and Research on International Development (FERDI)</a>
+        in France.
+      </p>
+
+      <div class="interests">
+        <h3>Research Interests</h3>
+        <div class="tags">
+          <span class="tag">Macroeconomics</span>
+          <span class="tag">Taxation</span>
+          <span class="tag">Public Economics</span>
+          <span class="tag">Financing for Development</span>
+          <span class="tag">Quantitative Analysis</span>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="mailto:your.email@example.com">✉ Email</a>
+        <a href="#" target="_blank" rel="noopener">🎓 Google Scholar</a>
+        <a href="#" target="_blank" rel="noopener">in LinkedIn</a>
+        <a href="#cv">📄 CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CV ============ -->
+  <section id="cv" class="reveal">
+    <h2 class="section-title">Curriculum Vitae</h2>
+
+    <div class="timeline">
+      <div class="cv-item">
+        <div class="date">Present</div>
+        <h3>Research Assistant</h3>
+        <div class="place">FERDI — Foundation for Studies and Research on International Development, France</div>
+      </div>
+      <div class="cv-item">
+        <div class="date">Education</div>
+        <h3>Development Economics — Public Finance</h3>
+        <div class="place">University of Clermont Auvergne – School of Economics (CERDI), France</div>
+      </div>
+      <!-- Ajoutez d'autres expériences/diplômes en copiant un bloc .cv-item -->
+    </div>
+
+    <a class="cv-download" href="cv.pdf" target="_blank" rel="noopener">Download full CV (PDF)</a>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research" class="reveal">
+    <h2 class="section-title">Research</h2>
+
+    <!-- Published Works -->
+    <div class="subsection">
+      <h3>Published Works</h3>
+      <div class="paper">
+        <div class="ptitle">Title of your published paper <span class="status pub">Published</span></div>
+        <div class="pmeta">Co-authors · Journal name, Year · DOI / link</div>
+        <div class="pabs">Short one-line description or abstract of the paper goes here.</div>
+      </div>
+      <!-- Copiez un bloc .paper pour chaque publication -->
+    </div>
+
+    <!-- Work in Progress -->
+    <div class="subsection">
+      <h3>Work in Progress</h3>
+      <div class="paper">
+        <div class="ptitle">Title of your working paper <span class="status wip">In progress</span></div>
+        <div class="pmeta">Co-authors · Working paper, Year</div>
+        <div class="pabs">Short description of the ongoing project.</div>
+      </div>
+    </div>
+
+    <!-- Data Work -->
+    <div class="subsection">
+      <h3>Data Work</h3>
+      <div class="paper">
+        <div class="ptitle">Name of the dataset or data project</div>
+        <div class="pmeta">Description, source, or repository link</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OTHER ACTIVITIES ============ -->
+  <section id="other" class="reveal">
+    <h2 class="section-title">Other Activities</h2>
+    <div class="subsection">
+      <div class="paper">
+        <div class="ptitle">Teaching, conferences, seminars, or service</div>
+        <div class="pabs">Add any other relevant academic or professional activities here.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ BOUTON RETOUR EN HAUT ============ -->
+<button id="topBtn" title="Back to top">↑</button>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer>
+  <p>© <span id="year"></span> Gaël W.K. Tape · Development Economist</p>
+  <p>Made with care · <a href="mailto:your.email@example.com">Contact</a></p>
+</footer>
+
+<script>
+/* ===================================================================
+   JAVASCRIPT
+   =================================================================== */
+
+// 1) Année automatique dans le pied de page
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// 2) Bouton "retour en haut" — apparaît après 300px de défilement
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', function () {
+  topBtn.style.display = (window.scrollY > 300) ? 'block' : 'none';
+});
+topBtn.addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 3) Surligne l'onglet de navigation correspondant à la section visible
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section');
+
+const navObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(function (link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(function (sec) { navObserver.observe(sec); });
+
+// 4) Animation d'apparition au défilement (fade-in)
+const revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+</script>
+
+</body>
+</html>
